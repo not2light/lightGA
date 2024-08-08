@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LightChain Technology</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>LightChain Technology</h1>
+        <nav>
+            <ul class="nav-items">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="us.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Log In</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="banner">
+            <h1>Secure Your Financial Transactions with Blockchain Technology</h1>
+            <p>Providing secure and efficient transactions for everybody</p>
+            <div class="loginItem">
+                <h1 class="headin">Login</h1>
+                <div id="line"></div>
+                <form id="loginForm">
+                    <div class="part">
+                        <label for="username" class="title">Username:</label><br>
+                        <input id="username" name="username" type="text" class="input">
+                    </div>
+                    <div class="part">
+                        <label for="password" class="title">Password:</label><br>
+                        <input id="password" name="password" type="password" class="input">
+                    </div>
+                    <div class="part">
+                        <button type="submit" class="submitBtn">Login</button>
+                    </div>
+                </form>
+                <div class="part">
+                    <div class="spart">
+                        <p class="sText">No account? <a href="signup.html">Signup!</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (username && password) {
+                localStorage.setItem('username', username);
+                localStorage.setItem('password', password);
+                window.location.href = 'index.html';
+            } else {
+                alert('Please enter both username and password.');
+            }
+        });
+    </script>
+</body>
+</html>

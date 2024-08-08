@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LightChain Technology</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>About LightChain Technology</h1>
+        <nav>
+            <ul class="nav-items">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="walletNav" style="display: none;"><a href="wallet.html">Wallet</a></li>
+                <li id="loginNav"><a href="login.html">Log In</a></li>
+                <li id="usernameNav" style="display: none;"></li>
+                <li id="signOutNav" style="display: none;"><a href="#" onclick="signOut()">Sign Out</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="banner">
+            <h1>The blockchain website you NEED to have a secure, transparent and efficient payment experience</h1>
+            <p>Providing secure and efficient transactions for everybody including banks, investment firms, and insurance companies.</p>
+            <p>Reduce the risk of cybercrime with our ultra SAFE payment methods.</p>
+            <div class="cta">
+                <a href="signup.html"><button id="signupBtn">Get Started</button></a>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const username = localStorage.getItem('username');
+            if (username) {
+                document.getElementById('loginNav').style.display = 'none';
+                document.getElementById('usernameNav').style.display = 'block';
+                document.getElementById('usernameNav').textContent = 'Welcome, ' + username;
+                document.getElementById('signupBtn').style.display = 'none';
+                document.getElementById('signOutNav').style.display = 'block';
+                document.getElementById('walletNav').style.display = 'block';
+            }
+        });
+
+        function signOut() {
+            localStorage.removeItem('username');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
+
+

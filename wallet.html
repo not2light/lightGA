@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LightChain Wallet</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Your Wallet</h1>
+        <nav>
+            <ul class="nav-items">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="us.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="walletNav"><a href="wallet.html">Wallet</a></li>
+                <li id="loginNav"><a href="login.html">Log In</a></li>
+                <li id="usernameNav" style="display: none;"></li>
+                <li id="signOutNav"><a href="#" onclick="signOut()">Sign Out</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="banner">
+            <h1>Welcome to your wallet</h1>
+            <p>Manage your transactions securely and efficiently.</p>
+            <p id="balance">Balance: $0.00</p>
+            <div class="cta">
+                <a href="topup.html"><button>Top Up Balance</button></a>
+                <a href="send.html"><button>Send Money</button></a>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const username = localStorage.getItem('username');
+            const balance = localStorage.getItem('balance') || '0.00';
+            if (username) {
+                document.getElementById('loginNav').style.display = 'none';
+                document.getElementById('usernameNav').style.display = 'block';
+                document.getElementById('usernameNav').textContent = 'Welcome, ' + username;
+                document.getElementById('signOutNav').style.display = 'block';
+                document.getElementById('balance').textContent = 'Balance: $' + balance;
+            }
+        });
+
+        function signOut() {
+            localStorage.removeItem('username');
+            localStorage.removeItem('balance');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
+
+

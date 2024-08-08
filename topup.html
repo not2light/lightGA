@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Up Balance</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Top Up Balance</h1>
+        <nav>
+            <ul class="nav-items">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="us.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="walletNav"><a href="wallet.html">Wallet</a></li>
+                <li id="loginNav"><a href="login.html">Log In</a></li>
+                <li id="usernameNav" style="display: none;"></li>
+                <li id="signOutNav"><a href="#" onclick="signOut()">Sign Out</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="banner">
+            <h1>Top Up Your Balance</h1>
+            <form id="topupForm">
+                <div class="part">
+                    <label for="name">Name:</label><br>
+                    <input id="name" name="name" type="text" class="input">
+                </div>
+                <div class="part">
+                    <label for="amount">Amount:</label><br>
+                    <input id="amount" name="amount" type="number" step="0.01" min="0" class="input">
+                </div>
+                <div class="part">
+                    <label for="paymentMethod">Payment Method:</label><br>
+                    <input id="paymentMethod" name="paymentMethod" type="text" class="input">
+                </div>
+                <div class="part">
+                    <label for="password">Password:</label><br>
+                    <input id="password" name="password" type="password" class="input">
+                </div>
+                <div class="part">
+                    <button type="submit" class="submitBtn">Top Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const username = localStorage.getItem('username');
+            if (username) {
+                document.getElementById('loginNav').style.display = 'none';
+                document.getElementById('usernameNav').style.display = 'block';
+                document.getElementById('usernameNav').textContent = 'Welcome, ' + username;
+                document.getElementById('signOutNav').style.display = 'block';
+            }
+
+            document.getElementById('topupForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                const amount = parseFloat(document.getElementById('amount').value);
+                const password = document.getElementById('password').value;
+                const storedPassword = localStorage.getItem('password');
+                
+                if (isNaN(amount) || amount <= 0) {
+                    alert('Please enter a valid amount.');
+                    return;
+                }
+
+                if (password !== storedPassword) {
+                    alert('Incorrect password.');
+                    return;
+                }
+
+                let balance = parseFloat(localStorage.getItem('balance') || '0.00');
+                balance += amount;
+                localStorage.setItem('balance', balance.toFixed(2));
+                alert('Top up successful.');
+                window.location.href = 'wallet.html';
+            });
+        });
+
+        function signOut() {
+            localStorage.removeItem('username');
+            localStorage.removeItem('balance');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
